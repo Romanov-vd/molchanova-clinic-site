@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Медицинский центр «ВитаНова»{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #FFF5EB;
+            color: #2D3436;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #2D3436;
+            padding: 20px 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        header h1 {
+            color: #E86A33;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        header h1 span {
+            color: #fff;
+            font-weight: 300;
+        }
+        header .slogan {
+            color: #F4A261;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 15px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        nav a:hover, nav a.active {
+            background: #E86A33;
+            color: #fff;
+        }
+        main {
+            flex: 1;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        footer {
+            background: #2D3436;
+            color: #F4A261;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(232, 106, 51, 0.1);
+            margin-bottom: 25px;
+            border: 1px solid #FFE8D6;
+        }
+        h2 {
+            color: #E86A33;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #2D3436;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #FFE8D6;
+        }
+        th {
+            background: #E86A33;
+            color: #fff;
+            font-weight: 600;
+        }
+        ul.features-list {
+            list-style: none;
+            padding: 0;
+        }
+        ul.features-list li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            font-size: 16px;
+            border-bottom: 1px solid #FFE8D6;
+        }
+        ul.features-list li:last-child {
+            border-bottom: none;
+        }
+        ul.features-list li::before {
+            content: "✓";
+            color: #E86A33;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #E86A33, #F4A261);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: linear-gradient(135deg, #F4A261, #E86A33);
+        }
+        form {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #FFE8D6;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2D3436;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #FFE8D6;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 15px;
+            resize: none;
+            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+        form input:focus, form textarea:focus {
+            border-color: #E86A33;
+            outline: none;
+        }
+        .contact-row {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .contact-col {
+            flex: 1;
+            min-width: 280px;
+        }
+        .contact-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #FFF8F2;
+            border-radius: 8px;
+            border-left: 4px solid #E86A33;
+        }
+        .contact-item strong {
+            color: #E86A33;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .contact-item p {
+            color: #2D3436;
+            font-size: 15px;
+        }
+        img.responsive {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav a {
+                margin: 0 8px;
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div>
+                <h1>Вита<span>Нова</span></h1>
+                <div class="slogan">Забота о вашем здоровье — наша миссия</div>
+            </div>
+            <nav>
+                <a href="{% url 'index' %}" {% if active_page == 'index' %}class="active"{% endif %}>Главная</a>
+                <a href="{% url 'services' %}" {% if active_page == 'services' %}class="active"{% endif %}>Услуги</a>
+                <a href="{% url 'contacts' %}" {% if active_page == 'contacts' %}class="active"{% endif %}>Контакты</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2026 Медицинский центр «ВитаНова». Все права защищены. Курсовой проект.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Контакты — Медицинский центр «ВитаНова»{% endblock %}
+{% block content %}
+    <div class="card" style="text-align:center;">
+        <h2>Контакты</h2>
+        <p style="font-size:16px; color:#666; max-width:500px; margin:0 auto;">
+            Мы всегда рады помочь вам. Свяжитесь с нами любым удобным способом.
+        </p>
+    </div>
+
+    <div class="contact-row">
+        <div class="contact-col">
+            <div class="card">
+                <h3>Наш адрес</h3>
+                <div class="contact-item">
+                    <strong>📍 Адрес</strong>
+                    <p>ул. Героев Стратосферы, 5, Воронеж, 394029</p>
+                </div>
+                <div class="contact-item">
+                    <strong>📞 Телефон</strong>
+                    <p>+7 (936) 282-01-76</p>
+                </div>
+                <div class="contact-item">
+                    <strong>✉️ Email</strong>
+                    <p>info@vitanova-med.ru</p>
+                </div>
+                <div class="contact-item">
+                    <strong>🕒 Режим работы</strong>
+                    <p>Пн–Пт: 8:00 – 20:00</p>
+                    <p>Сб: 9:00 – 18:00</p>
+                    <p>Вс: 10:00 – 16:00</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Как добраться</h3>
+                <ul class="features-list">
+                    <li>Автобусы: №1, 5, 12 — остановка «ул. Героев Стратосферы»</li>
+                    <li>Маршрутное такси: №37, 45 — остановка «ул. Героев Стратосферы»</li>
+                    <li>Пешком: 2 минуты от остановки до входа</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-col">
+            <div class="card">
+                <h3>Карта проезда</h3>
+                <img src="{% static 'images/map.png' %}" alt="Карта проезда" class="responsive" style="max-width:500px;">
+            </div>
+
+            <div class="card">
+                <h3>Обратная связь</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" placeholder="Иванов Иван" required>
+
+                    <label>Телефон</label>
+                    <input type="tel" name="phone" placeholder="+7 (999) 123-45-67" required>
+
+                    <label>Сообщение</label>
+                    <textarea name="message" rows="4" placeholder="Ваше сообщение..." required></textarea>
+
+                    <button type="submit" class="btn" style="width:100%;">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="text-align:center; background:#2D3436; color:#F4A261;">
+        <h3 style="color:#E86A33;">Приходите к нам!</h3>
+        <p style="font-size:15px; line-height:1.7;">
+            Медицинский центр «ВитаНова» — забота о вашем здоровье каждый день.
+        </p>
+    </div>
+{% endblock %}
